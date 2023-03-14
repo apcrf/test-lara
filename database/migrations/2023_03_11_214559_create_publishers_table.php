@@ -22,7 +22,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('publishers', function (Blueprint $table) {
-            $table->id('publisher_id');
+            $table->id('publisher_id')->unique();
             $table->string('publisher_name');
             $table->text('publisher_note');
             $table->timestamps();
