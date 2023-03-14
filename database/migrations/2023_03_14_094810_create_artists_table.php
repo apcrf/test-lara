@@ -1,7 +1,8 @@
 <?php
 
+// https://www.toptal.com/laravel/restful-laravel-api-tutorial
 // cd D:\Server\web\test-lara\
-// php artisan make:model Publisher -m
+// php artisan make:model Artist -m
 // php artisan migrate
 // Откат миграций, при необходимости
 // php artisan migrate:reset
@@ -21,10 +22,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('publishers', function (Blueprint $table) {
-            $table->id('publisher_id');
-            $table->string('publisher_name');
-            $table->text('publisher_note');
+        Schema::create('artists', function (Blueprint $table) {
+            $table->id('artist_id')->unique();
+            $table->string('artist_name');
+            $table->text('artist_note');
             $table->timestamps();
         });
     }
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publishers');
+        Schema::dropIfExists('artists');
     }
 };

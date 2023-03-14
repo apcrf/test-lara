@@ -1,9 +1,9 @@
 <?php
 
-// D:\server\web\test-lara> php artisan make:controller PublisherController
-//
+// cd D:\Server\web\test-lara\
+// php artisan make:controller PublisherController
 // Очистка кэша, при необходимости
-// D:\server\web\test-lara> php artisan config:cache
+// php artisan config:cache
 
 namespace App\Http\Controllers;
 
@@ -12,14 +12,15 @@ use Illuminate\Http\Request;
 // Подключается класс для валидации
 use App\Http\Requests\PublisherRequest;
 
-// Подключаем класс модели
+// Подключается класс модели
 use App\Models\Publisher;
 
 class PublisherController extends Controller
 {
     // Сохранение записи
 	/*
-	public function save(Request $row) {
+	public function save(Request $row)
+	{
 		//return "Save OK";
 		//dd($row);
 		//dd($row->input('publisher_name'));
@@ -30,7 +31,8 @@ class PublisherController extends Controller
 	}
 	*/
     // Сохранение записи
-	public function save(PublisherRequest $row) {
+	public function save(PublisherRequest $row)
+	{
 		//dd($row);
 		//dd($row->input('publisher_name'));
 		$publisher = new Publisher();
@@ -43,7 +45,8 @@ class PublisherController extends Controller
 	}
 
     // Список записей
-	public function listing() {
+	public function listing()
+	{
 		/*
 		$publisher = new Publisher();
 		$rows = $publisher->all();
@@ -68,19 +71,22 @@ class PublisherController extends Controller
 	}
 
     // Просмотр записи
-	public function view($id) {
+	public function view($id)
+	{
 		$publisher = new Publisher();
 		return view('publisher_view', ['row' => $publisher->find($id)]);
 	}
 
     // Правка записи
-	public function edit($id) {
+	public function edit($id)
+	{
 		$publisher = new Publisher();
 		return view('publisher_edit', ['row' => $publisher->find($id)]);
 	}
 
     // Сохранение правки
-	public function update($id, PublisherRequest $row) {
+	public function update($id, PublisherRequest $row)
+	{
 		$publisher = Publisher::find($id);
 		// null //$publisher->publisher_id = $row->input('publisher_id');
 		$publisher->publisher_name = $row->input('publisher_name');
@@ -91,7 +97,8 @@ class PublisherController extends Controller
 	}
 
     // Удаление записи
-	public function delete($id) {
+	public function delete($id)
+	{
 		Publisher::find($id)->delete();
 
 		return redirect()->route('publisher-listing')->with('success', 'Издатель был удалён');

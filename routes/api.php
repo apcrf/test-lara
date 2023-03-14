@@ -14,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+///////////////////////////////////////////////////////////////////////////
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+///////////////////////////////////////////////////////////////////////////
+
+// http://test-lara/api/artists
+// http://test-lara/api/artists/2
+$controllerName = 'App\Http\Controllers\ArtistController';
+Route::get('artists', $controllerName . '@index');
+Route::get('artists/{id}', $controllerName . '@show');
+Route::post('artists', $controllerName . '@store');
+Route::put('artists/{id}', $controllerName . '@update');
+Route::delete('artists/{id}', $controllerName . '@delete');
+
+///////////////////////////////////////////////////////////////////////////
