@@ -33,6 +33,7 @@
 			<div class="row mt-3">
 				<div class="offset-lg-4 col-lg-8">
 					<button type="submit" class="btn btn-primary">Сохранить</button>
+					<button type="button" class="btn btn-light" onclick="location.href='{{ route('publisher-listing') }}'">Отмена</button>
 				</div>
 			</div>
 		</div>

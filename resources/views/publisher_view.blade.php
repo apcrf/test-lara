@@ -9,24 +9,18 @@
 	</h1>
 
 	<table class="table table-bordered mt-3">
-		<thead>
-			<tr>
-				<th scope="col">ID</th>
-				<th scope="col">Наименование</th>
-				<th scope="col">Примечание</th>
-			</tr>
-		</thead>
 		<tbody>
 			<tr>
-				<th>
-					{{ $row->publisher_id }}
-				</th>
-				<td>
-					{{ $row->publisher_name }}
-				</td>
-				<td>
-					{{ $row->publisher_note }}
-				</td>
+				<td>ID</td>
+				<td>{{ $row->publisher_id }}</td>
+			</tr>
+			<tr>
+				<td>Наименование</td>
+				<td>{{ $row->publisher_name }}</td>
+			</tr>
+			<tr>
+				<td>Примечание</td>
+				<td>{{ $row->publisher_note }}</td>
 			</tr>
 		</tbody>
 	</table>
