@@ -8,7 +8,7 @@ PHP: **Laravel**
 CSS: **Bootstrap**  
 
 **Список Издателей** - справочник в "классическом" исполнении - с перезагрузкой страницы для сохранения данных.  
-http://test-lara.trevdo.com/publisher/listing  
+http://test-lara.trevdo.com/publisher/list
 
 **REST API Артисты** - _REpresentational State Transfer_ API для просмотра, добавления, правки и удаления записей в таблице `artists`.  
 GET http://test-lara.trevdo.com/api/artists  
