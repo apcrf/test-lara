@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 // Подключается класс модели
 use App\Models\Artist;
 
+// Подключается класс для валидации
+use App\Http\Requests\ArtistRequest;
+
 class ArtistController extends Controller
 {
     // Список записей
@@ -33,30 +36,49 @@ class ArtistController extends Controller
     }
 
     // Сохранение новой записи
-	public function save(ArtistRequest $row)
-	{
-		$artist = new Artist();
-		$fields = [
-			'artist_id', 'artist_name', 'artist_note'
-		];
-		foreach ( $fields as $v ) {
+    public function save(ArtistRequest $row)
+    {
+        $artist = new Artist();
+        $fields = [
+            'artist_name', 'artist_note'
+        ];
+        foreach ( $fields as $v ) {
+            $artist->{$v} = $row->input($v);
         }
-        $artist->artist_id = $row->input('artist_id');
-		$artist->artist_name = $row->input('artist_name');
-		$artist->artist_note = $row->input('artist_note');
-		$artist->save();
+        $artist->save();
 
-		return redirect()->route('artist-list')->with('success', 'Артист был добавлен');
-	}
+        return redirect()->route('artist-list')->with('success', 'Артист был добавлен');
+    }
 
     // Правка записи
-    // edit
+	public function edit($id)
+	{
+        $artist = new Artist();
+		return view('artist_edit', ['row' => $artist->find($id)]);
+	}
 
     // Сохранение правки
-    // update
+	public function update($id, ArtistRequest $row)
+	{
+		$artist = Artist::find($id);
+        $fields = [
+            'artist_name', 'artist_note'
+        ];
+        foreach ( $fields as $v ) {
+            $artist->{$v} = $row->input($v);
+        }
+		$artist->save();
+
+		return redirect()->route('artist-list', $id)->with('success', 'Правка Артиста сохранена');
+	}
 
     // Удаление записи
-    // del
+    public function del($id)
+    {
+        Artist::find($id)->delete();
+
+        return redirect()->route('artist-list')->with('success', 'Артист был удалён');
+    }
 
     /*
     |--------------------------------------------------------------------------

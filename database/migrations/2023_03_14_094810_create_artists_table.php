@@ -24,8 +24,8 @@ return new class extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->id('artist_id')->unique();
-            $table->string('artist_name');
-            $table->text('artist_note');
+            $table->string('artist_name', 255);
+            $table->text('artist_note')->nullable();
             $table->timestamps();
         });
     }

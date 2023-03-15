@@ -1,13 +1,13 @@
 <?php
 
 // cd D:\Server\web\test-lara\
-// php artisan make:request PublisherRequest
+// php artisan make:request ArtistRequest
 
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PublisherRequest extends FormRequest
+class ArtistRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +27,8 @@ class PublisherRequest extends FormRequest
     public function rules()
     {
         return [
-			'publisher_name' => 'required|min:2|max:255',
-			'publisher_note' => 'required|min:5',
+			'artist_name' => 'required|min:2|max:255',
+			'artist_note' => '',
         ];
     }
 
@@ -40,23 +40,22 @@ class PublisherRequest extends FormRequest
     public function attributes()
     {
         return [
-			'publisher_name' => 'Наименование',
-			'publisher_note' => 'Примечание',
+			'artist_name' => 'Наименование',
+			'artist_note' => 'Примечание',
         ];
 	}
 
     /**
      * Замена стандартных сообщений об ошибках.
-     * https://laravel.com/docs/6.x/validation#custom-error-messages
 	 *
      * @return array<string, mixed>
      */
     public function messages()
     {
         return [
-			'publisher_name.required' => 'Поле ":attribute" является обязательным.',
-			'publisher_name.min' => 'Поле ":attribute" должно иметь минимальную длину :min',
-			'publisher_name.max' => 'Поле ":attribute" должно иметь максимальную длину :max',
+			'artist_name.required' => 'Поле ":attribute" является обязательным.',
+			'artist_name.min' => 'Поле ":attribute" должно иметь минимальную длину :min',
+			'artist_name.max' => 'Поле ":attribute" должно иметь максимальную длину :max',
         ];
 	}
 }

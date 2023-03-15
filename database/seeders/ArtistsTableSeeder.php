@@ -27,7 +27,7 @@ class ArtistsTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         // And now, let's create a few rows in our database:
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 20; $i++) {
                 Artist::create([
                 'artist_name' => $faker->sentence,
                 'artist_note' => $faker->paragraph,

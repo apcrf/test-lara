@@ -28,13 +28,13 @@
 			<div class="row mt-3">
 				<label class="col-form-label col-lg-4 text-lg-end">Наименование:</label>
 				<div class="col-lg-8">
-					<input type="text" class="form-control" name="publisher_name" placeholder="Введите наименование">
+					<input type="text" class="form-control" name="publisher_name" value="{{ old('publisher_name') }}" placeholder="Введите наименование">
 				</div>
 			</div>
 			<div class="row mt-3">
 				<label class="col-form-label col-lg-4 text-lg-end">Описание:</label>
 				<div class="col-lg-8">
-					<textarea class="form-control" name="publisher_note" rows="3" placeholder="Введите описание"></textarea>
+					<textarea rows="3" class="form-control" name="publisher_note" placeholder="Введите описание">{{ old('publisher_note') }}</textarea>
 				</div>
 			</div>
 			<div class="row mt-3">

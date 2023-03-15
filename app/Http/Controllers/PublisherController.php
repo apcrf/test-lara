@@ -69,7 +69,7 @@ class PublisherController extends Controller
 		//dd($row);
 		//dd($row->input('publisher_name'));
 		$publisher = new Publisher();
-		$publisher->publisher_id = $row->input('publisher_id');
+		// $publisher->publisher_id = $row->input('publisher_id');
 		$publisher->publisher_name = $row->input('publisher_name');
 		$publisher->publisher_note = $row->input('publisher_note');
 		$publisher->save();
@@ -96,7 +96,7 @@ class PublisherController extends Controller
 		return redirect()->route('publisher-view', $id)->with('success', 'Правка Издателя сохранена');
 	}
 
-    // Удаление записи
+	// Удаление записи
 	public function del($id)
 	{
 		Publisher::find($id)->delete();
