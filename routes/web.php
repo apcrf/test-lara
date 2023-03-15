@@ -93,5 +93,6 @@ Route::get('/artist/list-simple', [ArtistController::class, 'listSimple'])->name
 Route::get('/artist/list', [ArtistController::class, 'list'])->name('artist-list');
 
 Route::get('/artist/add', [ArtistController::class, 'add'])->name('artist-add');
+Route::post('/artist/save', [ArtistController::class, 'save'])->name('artist-save');
 Route::get('/artist/edit/{id}', [ArtistController::class, 'edit'])->name('artist-edit');
 Route::get('/artist/del/{id}', [ArtistController::class, 'del'])->name('artist-del');

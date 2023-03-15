@@ -27,10 +27,27 @@ class ArtistController extends Controller
     }
 
     // Добавление новой записи
-    // add
+    public function add()
+    {
+        return view('artist_add');
+    }
 
     // Сохранение новой записи
-    // save
+	public function save(ArtistRequest $row)
+	{
+		$artist = new Artist();
+		$fields = [
+			'artist_id', 'artist_name', 'artist_note'
+		];
+		foreach ( $fields as $v ) {
+        }
+        $artist->artist_id = $row->input('artist_id');
+		$artist->artist_name = $row->input('artist_name');
+		$artist->artist_note = $row->input('artist_note');
+		$artist->save();
+
+		return redirect()->route('artist-list')->with('success', 'Артист был добавлен');
+	}
 
     // Правка записи
     // edit
