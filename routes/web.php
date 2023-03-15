@@ -70,6 +70,14 @@ Route::get(
 
 ///////////////////////////////////////////////////////////////////////////
 
+// Артист - Show list view
+Route::get(
+	'/artists',
+	'App\Http\Controllers\ArtistController@index'
+)->name('artist-index');
+
+///////////////////////////////////////////////////////////////////////////
+
 // Стандартная страница нового проекта Laravel
 Route::get('/welcome', function () {
     return view('welcome');
