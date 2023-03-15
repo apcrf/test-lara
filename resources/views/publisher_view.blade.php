@@ -25,6 +25,6 @@
 		</tbody>
 	</table>
 
-	<a href="{{ route('publisher-listing') }}">Перейти к списку</a>
+	<a href="{{ route('publisher-list') }}">Перейти к списку</a>
 
 @endsection

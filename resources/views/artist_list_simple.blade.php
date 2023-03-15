@@ -17,12 +17,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			@if(count($artists) > 0)
-				@foreach ($artists as $artist)
+			@if(count($rows) > 0)
+				@foreach ($rows as $row)
 					<tr>
-						<th scope="row">{{ $artist->artist_id }}</th>
-						<td>{{ $artist->artist_name }}</td>
-						<td>{{ $artist->artist_note }}</td>
+						<th scope="row">{{ $row->artist_id }}</th>
+						<td>{{ $row->artist_name }}</td>
+						<td>{{ $row->artist_note }}</td>
 					</tr>
 				@endforeach
 			@else
@@ -32,6 +32,6 @@
 			@endif
 		</tbody>
 	</table>
-	{!! $artists->links() !!}
+	{!! $rows->links() !!}
 
 @endsection

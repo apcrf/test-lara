@@ -81,15 +81,18 @@
 						Справочники
 					</a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="{{ route('publisher-listing') }}">Список Издателей</a></li>
+						<li><a class="dropdown-item" href="{{ route('publisher-list') }}">Список Издателей</a></li>
 						<li><a class="dropdown-item" href="{{ route('publisher-add') }}">Добавить Издателя</a></li>
 						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="{{ route('artist-index') }}">Список Артистов</a></li>
+						<li><a class="dropdown-item" href="{{ route('artist-list-simple') }}">Список Артистов - simplePaginate</a></li>
+						<li><a class="dropdown-item" href="{{ route('artist-list') }}">Список Артистов - paginate</a></li>
 					</ul>
 				</li>
+				<!--
 				<li class="nav-item">
 					<a class="nav-link disabled" href="#">Disabled</a>
 				</li>
+				-->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" onclick="navbarLinkClick(this)">
 						Меню

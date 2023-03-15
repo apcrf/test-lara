@@ -14,21 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-///////////////////////////////////////////////////////////////////////////
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-///////////////////////////////////////////////////////////////////////////
+/*
+|--------------------------------------------------------------------------
+| REST API Артистов
+| http://test-lara/api/artists
+| http://test-lara/api/artists/2
+|--------------------------------------------------------------------------
+*/
 
-// http://test-lara/api/artists
-// http://test-lara/api/artists/2
-$controllerName = 'App\Http\Controllers\ArtistController';
-Route::get('artists', $controllerName . '@indexAPI');
-Route::get('artists/{id}', $controllerName . '@showAPI');
-Route::post('artists', $controllerName . '@storeAPI');
-Route::put('artists/{id}', $controllerName . '@updateAPI');
-Route::delete('artists/{id}', $controllerName . '@deleteAPI');
+use App\Http\Controllers\ArtistController;
 
-///////////////////////////////////////////////////////////////////////////
+Route::get('/artists', [ArtistController::class, 'index']);
+Route::get('/artists/{id}', [ArtistController::class, 'get']);
+Route::post('/artists', [ArtistController::class, 'post']);
+Route::put('/artists/{id}', [ArtistController::class, 'put']);
+Route::delete('/artists/{id}', [ArtistController::class, 'delete']);

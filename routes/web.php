@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-///////////////////////////////////////////////////////////////////////////
-
 Route::get('/', function () {
     return view('homepage');
 })->name('homepage');
@@ -23,7 +21,28 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-///////////////////////////////////////////////////////////////////////////
+// Стандартная страница нового проекта Laravel
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Справочник Издателей
+|--------------------------------------------------------------------------
+*/
+
+// Издатель - Список записей
+Route::get(
+	'/publisher/list',
+	'App\Http\Controllers\PublisherController@list'
+)->name('publisher-list');
+
+// Издатель - Просмотр
+Route::get(
+	'/publisher/view/{id}', 
+	'App\Http\Controllers\PublisherController@view'
+)->name('publisher-view');
 
 // Издатель - Добавление
 Route::get('/publisher/add', function () {
@@ -41,15 +60,6 @@ Route::post('/publisher/save', function () {
 // Издатель - Сохранение записи
 Route::post('/publisher/save', 'App\Http\Controllers\PublisherController@save')->name('publisher-save');
 
-// Издатель - Список записей
-Route::get('/publisher/listing', 'App\Http\Controllers\PublisherController@listing')->name('publisher-listing');
-
-// Издатель - Просмотр
-Route::get(
-	'/publisher/view/{id}', 
-	'App\Http\Controllers\PublisherController@view'
-)->name('publisher-view');
-
 // Издатель - Правка
 Route::get(
 	'/publisher/edit/{id}', 
@@ -64,23 +74,24 @@ Route::post(
 
 // Издатель - Удаление
 Route::get(
-	'/publisher/delete/{id}', 
-	'App\Http\Controllers\PublisherController@delete'
-)->name('publisher-delete');
+	'/publisher/del/{id}', 
+	'App\Http\Controllers\PublisherController@del'
+)->name('publisher-del');
 
-///////////////////////////////////////////////////////////////////////////
+/*
+|--------------------------------------------------------------------------
+| Справочник Артистов
+|--------------------------------------------------------------------------
+*/
 
-// Артист - Show list view
-Route::get(
-	'/artists',
-	'App\Http\Controllers\ArtistController@index'
-)->name('artist-index');
+use App\Http\Controllers\ArtistController;
 
-///////////////////////////////////////////////////////////////////////////
+// Артист - Список записей - simplePaginate
+Route::get('/artist/list-simple', [ArtistController::class, 'listSimple'])->name('artist-list-simple');
 
-// Стандартная страница нового проекта Laravel
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+// Артист - Список записей - paginate
+Route::get('/artist/list', [ArtistController::class, 'list'])->name('artist-list');
 
-///////////////////////////////////////////////////////////////////////////
+Route::get('/artist/add', [ArtistController::class, 'add'])->name('artist-add');
+Route::get('/artist/edit/{id}', [ArtistController::class, 'edit'])->name('artist-edit');
+Route::get('/artist/del/{id}', [ArtistController::class, 'del'])->name('artist-del');
