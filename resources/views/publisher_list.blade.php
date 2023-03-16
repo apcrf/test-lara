@@ -4,6 +4,9 @@
 @section('title')Список Издателей@endsection
 
 @section('content')
+	<script defer src="/js/app-box.js" type="text/javascript"></script>
+	<script defer src="/js/publisher_list.js" type="text/javascript"></script>
+
 	<h1>
 		Список Издателей
 	</h1>
@@ -13,6 +16,7 @@
 			<tr>
 				<th class="text-center">ID</th>
 				<th>Наименование</th>
+				<th>Примечание</th>
 				<th class="py-1">
 					<a class="btn btn-success" href="{{ route('publisher-add') }}">Добавить Издателя</a>
 				</th>
@@ -27,10 +31,13 @@
 					<td>
 						{{ $row->publisher_name }}
 					</td>
+					<td>
+						{{ $row->publisher_note }}
+					</td>
 					<td class="py-1">
 						<a class="btn btn-secondary" href="{{ route('publisher-view', $row->publisher_id) }}">Просмотр</a>
 						<a class="btn btn-primary" href="{{ route('publisher-edit', $row->publisher_id) }}">Правка</a>
-						<a class="btn btn-danger" href="{{ route('publisher-del', $row->publisher_id) }}">Удаление</a>
+						<button type="button" class="btn btn-danger" onclick="btnDelOnClick({{ $row->publisher_id }})">Удаление</button>
 					</td>
 				</tr>
 			@endforeach

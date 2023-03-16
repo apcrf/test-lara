@@ -4,6 +4,9 @@
 @section('title')Список Артистов@endsection
 
 @section('content')
+	<script defer src="/js/app-box.js" type="text/javascript"></script>
+	<script defer src="/js/artist_list.js" type="text/javascript"></script>
+
 	<h1>
 		Список Артистов
 	</h1>
@@ -33,7 +36,7 @@
 					</td>
 					<td class="py-1">
 						<a class="btn btn-primary" href="{{ route('artist-edit', $row->artist_id) }}">Правка</a>
-						<a class="btn btn-danger" href="{{ route('artist-del', $row->artist_id) }}">Удаление</a>
+						<button type="button" class="btn btn-danger" onclick="btnDelOnClick({{ $row->artist_id }})">Удаление</button>
 					</td>
 				</tr>
 			@endforeach
