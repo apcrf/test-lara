@@ -45,14 +45,46 @@
 		</tbody>
 	</table>
 
-	<div class="input-group">
-		<label class="input-group-text">Всего записей:</label>
-		<input type="text" class="form-control">
-		<select class="form-select">
-			<option value="1" selected>One</option>
-			<option value="2">Two</option>
-			<option value="3">Three</option>
-		</select>
+	<style>
+		.paginator-btn { width: 50px; }
+		.paginator-select { width: fit-content; }
+	</style>
+	<div class="row justify-content-end">
+		<div class="col-auto">
+			<label class="col-form-label">Всего:</label>
+			<label class="col-form-label ms-1">50</label>
+		</div>
+		<div class="col-auto">
+			<div class="input-group">
+				<button type="button" class="btn btn-secondary border-0 border-end paginator-btn">
+					<i class="fa-solid fa-backward-fast fa-xl"></i>
+				</button>
+				<button type="button" class="btn btn-secondary border-0 border-start paginator-btn">
+					<i class="fa-solid fa-caret-left fa-2xl"></i>
+				</button>
+				<select class="form-select text-center paginator-select">
+					<option value="1" selected>1</option>
+					<option value="2">2</option>
+					<option value="123">123</option>
+				</select>
+				<label class="input-group-text border-end-0">из</label>
+				<label class="input-group-text border-start-0 ps-0">3</label>
+				<button type="button" class="btn btn-secondary border-0 border-end paginator-btn">
+					<i class="fa-solid fa-caret-right fa-2xl"></i>
+				</button>
+				<button type="button" class="btn btn-secondary border-0 border-start paginator-btn">
+					<i class="fa-solid fa-forward-fast fa-xl"></i>
+				</button>
+			</div>
+		</div>
+		<div class="col-auto mt-2 mt-md-0">
+			<label class="col-form-label">на странице:</label>
+			<select class="form-select d-inline text-center ms-2" style="width: 82px;">
+				<option value="10" selected>10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+			</select>
+		</div>
 	</div>
 
 @endsection
