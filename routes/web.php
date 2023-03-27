@@ -97,3 +97,14 @@ Route::post('/artist/save', [ArtistController::class, 'save'])->name('artist-sav
 Route::get('/artist/edit/{id}', [ArtistController::class, 'edit'])->name('artist-edit');
 Route::post('/artist/update/{id}', [ArtistController::class, 'update'])->name('artist-update');
 Route::get('/artist/del/{id}', [ArtistController::class, 'del'])->name('artist-del');
+
+/*
+|--------------------------------------------------------------------------
+| Диски
+|--------------------------------------------------------------------------
+*/
+
+use App\Http\Controllers\DiskController;
+
+// Диски - Список записей
+Route::get('/disks', [DiskController::class, 'disks'])->name('disks');
