@@ -6,9 +6,9 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 // Класс модели
-use App\Models\Artist;
+use App\Models\Publisher;
 
-class ArtistsTableSeeder extends Seeder
+class PublishersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,15 +19,15 @@ class ArtistsTableSeeder extends Seeder
     {
         // Let's truncate our existing records to start from scratch.
         // !!! Cannot truncate a table referenced in a foreign key constraint !!!
-        // Artist::truncate();
+        // Publisher::truncate();
 
         $faker = \Faker\Factory::create();
 
         // And now, let's create a few rows in our database:
-        for ($i = 0; $i < 100; $i++) {
-            Artist::create([
-                'artist_name' => $faker->sentence,
-                'artist_note' => $faker->paragraph,
+        for ($i = 0; $i < 50; $i++) {
+            Publisher::create([
+                'publisher_name' => $faker->sentence,
+                'publisher_note' => $faker->paragraph,
             ]);
         }
     }
