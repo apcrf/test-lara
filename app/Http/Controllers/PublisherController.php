@@ -9,10 +9,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// Подключается класс модели
+// Класс модели
 use App\Models\Publisher;
 
-// Подключается класс для валидации
+// Класс для валидации
 use App\Http\Requests\PublisherRequest;
 
 class PublisherController extends Controller

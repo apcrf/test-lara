@@ -7,10 +7,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// Подключается класс модели
+// Класс модели
 use App\Models\Artist;
 
-// Подключается класс для валидации
+// Класс для валидации
 use App\Http\Requests\ArtistRequest;
 
 class ArtistController extends Controller
