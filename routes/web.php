@@ -13,18 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-})->name('homepage');
+/*
+|--------------------------------------------------------------------------
+| Диски
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+use App\Http\Controllers\DiskController;
 
-// Стандартная страница нового проекта Laravel
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+// Диски - Список записей
+Route::get('/', [DiskController::class, 'disks'])->name('disks');
 
 /*
 |--------------------------------------------------------------------------
@@ -100,11 +98,21 @@ Route::get('/artist/del/{id}', [ArtistController::class, 'del'])->name('artist-d
 
 /*
 |--------------------------------------------------------------------------
-| Диски
+| Прочее
 |--------------------------------------------------------------------------
 */
 
-use App\Http\Controllers\DiskController;
+// О проекте
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
-// Диски - Список записей
-Route::get('/disks', [DiskController::class, 'disks'])->name('disks');
+// Стандартная страница нового проекта Laravel
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
+
+// Пустая страница
+Route::get('/emptypage', function () {
+    return view('emptypage');
+})->name('emptypage');

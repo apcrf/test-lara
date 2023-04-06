@@ -57,8 +57,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container-fluid">
 		<!-- siteName -->
-		<a class="navbar-brand" href="{{ route('homepage') }}" title="Главная страница">
-			<span>Test Lara</span>
+		<a class="navbar-brand" href="{{ route('disks') }}" title="Главная страница">
+			<span class="text-primary">Test Disks</span>
 		</a>
 		<!-- toggler -->
 		<button type="button" class="navbar-toggler" onclick="navbarBtnClick(this)" title="Меню сайта">
@@ -68,49 +68,35 @@
 		<div class="collapse navbar-collapse" id="collapse">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<!-- menuMain -->
-				<!--
 				<li class="nav-item">
-					<a class="nav-link active" href="{{ route('homepage') }}">Главная</a>
-				</li>
-				-->
-				<li class="nav-item">
-					<a class="nav-link" href="{{ route('about') }}">О проекте</a>
+					<a class="nav-link active" href="{{ route('disks') }}">Каталог Дисков</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" onclick="navbarLinkClick(this)">
-						Справочники
+						Справочник Артистов
 					</a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="{{ route('publisher-list') }}">Список Издателей</a></li>
-						<li><a class="dropdown-item" href="{{ route('publisher-add') }}">Добавить Издателя</a></li>
+						<li><a class="dropdown-item" href="{{ route('artist-list') }}">Список Артистов - paginate</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="{{ route('artist-list-simple') }}">Список Артистов - simplePaginate</a></li>
-						<li><a class="dropdown-item" href="{{ route('artist-list') }}">Список Артистов - paginate</a></li>
+						<li><a class="dropdown-item" href="{{ route('artist-add') }}">Добавить Артиста</a></li>
 					</ul>
 				</li>
-				<!--
 				<li class="nav-item">
-					<a class="nav-link disabled" href="#">Disabled</a>
+					<a class="nav-link" href="{{ route('publisher-list') }}">Справочник Издателей</a>
 				</li>
-				-->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" onclick="navbarLinkClick(this)">
-						Меню
+						Прочее
 					</a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Меню 1</a></li>
-						<li><a class="dropdown-item" href="#">Меню 2</a></li>
-						<li><a class="dropdown-item" href="#">Меню 3</a></li>
+						<li><a class="dropdown-item" href="{{ route('about') }}">О проекте</a></li>
+						<li><a class="dropdown-item" href="/emptypage">Пустая страница</a></li>
 						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="/welcome">Welcome</a></li>
+						<li><a class="dropdown-item" href="{{ route('welcome') }}">Welcome</a></li>
 					</ul>
 				</li>
 			</ul>
-			<!-- menuSearch -->
-			<form class="d-flex">
-				<input type="search" class="form-control me-2" placeholder="Поиск">
-				<button type="submit" class="btn btn-outline-success">Поиск</button>
-			</form>
 		</div>
 	</div>
 </nav>

@@ -1,7 +1,7 @@
 
 @extends('_template')
 
-@section('title')О проекте@endsection
+@section('title', 'О проекте')
 
 @section('content')
 	<h1>

@@ -1,4 +1,6 @@
 
+<div class="container">
+
 	@if($errors->any())
 		<!-- Вывод сообщений об ошибках -->
 		<div class="alert alert-danger mt-3">
@@ -16,3 +18,5 @@
 			{{ session('success') }}
 		</div>
 	@endif
+
+</div>

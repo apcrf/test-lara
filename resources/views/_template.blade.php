@@ -7,25 +7,26 @@
 	<meta name="keywords" content="test">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.png" type="image/png">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" type="text/css">
-	<script src="https://kit.fontawesome.com/9cc0b635fa.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="/libs/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/libs/fontawesome/css/all.css">
 	<title>@yield('title')</title>
 </head>
 <body>
 
 	@include('included.header')
-	
-	<div class="container">
 
-		@if(Request::is('about'))
+	@include('included.messages')
+
+	@if(Request::is('about'))
+		<div class="container">
 			<div class="alert alert-primary mt-3 mb-0">
 				Привет всем на нашем сайте!
 			</div>
-		@endif
+		</div>
+	@endif
 
-		@include('included.messages')
-
-		@if(Request::is('/') || Request::is('about'))
+	@if(Request::is('about') || Request::is('emptypage'))
+		<div class="container">
 			<div class="row">
 				<div class="col-12 col-lg-9 my-3">
 					@yield('content')
@@ -34,15 +35,10 @@
 					@include('included.aside')
 				</div>
 			</div>
-		@else
-			<div class="row">
-				<div class="col-12 my-3">
-					@yield('content')
-				</div>
-			</div>
-		@endif
-
-	</div> <!-- container -->
+		</div>
+	@else
+		@yield('content')
+	@endif
 
 </body>
 </html>
