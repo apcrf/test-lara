@@ -2,17 +2,20 @@
 Vue.createApp({
     data() {
         return {
-            rows: [],
-            search: '',
-            paginator: {
-                'current_page': 1, // Текущая страница
-                'last_page': 0, // Последняя страница
-                'per_page': 50, // Записей на странице
-                'per_pages': [20,50,100,500],
-                'total': 0, // Записей всего
-                'page': 1, // Выбранная для загрузки страница
-                'pages': [] // Список страниц
-            }
+            crud: {
+                rows: [],
+                rowSelected: 0,
+                search: '',
+                paginator: {
+                    'current_page': 1, // Текущая страница
+                    'last_page': 0, // Последняя страница
+                    'per_page': 50, // Записей на странице
+                    'per_pages': [20,50,100,500],
+                    'total': 0, // Записей всего
+                    'page': 1, // Выбранная для загрузки страница
+                    'pages': [] // Список страниц
+                }
+            },
         }
     },
     created: function() {
@@ -20,36 +23,56 @@ Vue.createApp({
     mounted: function() {
         this.rowsLoad();
     },
+    computed: {
+    },
     methods: {
         ////////////////////////////////////////////////////////////////////////////////////////////
         // Зарузка rows
         ////////////////////////////////////////////////////////////////////////////////////////////
         rowsLoad() {
+            var pg = this.crud.paginator;
             var url = '/api/disks';
-            url += '?per_page=' + this.paginator.per_page;
-            url += '&page=' + this.paginator.page;
-            url += '&search=' + this.search.trim();
+            url += '?per_page=' + pg.per_page;
+            url += '&page=' + pg.page;
+            url += '&search=' + this.crud.search.trim();
             axios
                 .get(url)
                 .then(response => {
                     var rd = response.data;
-                    this.rows = rd.data;
-                    this.paginator.current_page = rd.current_page;
-                    this.paginator.last_page = rd.last_page;
-                    this.paginator.per_page = rd.per_page;
-                    this.paginator.total = rd.total;
-                    this.paginator.page = rd.current_page;
-                    this.paginator.pages = [];
+                    this.crud.rows = rd.data;
+                    pg.current_page = rd.current_page;
+                    pg.last_page = rd.last_page;
+                    pg.per_page = rd.per_page;
+                    pg.total = rd.total;
+                    pg.page = rd.current_page;
+                    pg.pages = [];
                     for (var i=0; i<rd.last_page; i++ ) {
-                        this.paginator.pages.push(i+1);
+                        pg.pages.push(i+1);
                     }
                 });
+        },
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // Выделение строки - Style
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        rowSelectedStyle(crudName, row, fieldName) {
+            if ( row[fieldName] == this[crudName].rowSelected ) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // Выделение строки - Click
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        rowSelectedClick(crudName, row, fieldName) {
+            this[crudName].rowSelected = row[fieldName];
         },
         ////////////////////////////////////////////////////////////////////////////////////////////
         // Пагинация
         ////////////////////////////////////////////////////////////////////////////////////////////
         paginate(mode) {
-            var pg = this.paginator;
+            var pg = this.crud.paginator;
             switch (mode) {
                 case "first" : pg.page = 1; break;
                 case "prev" : pg.page > 1 ? pg.page-- : pg.page = 1; break;
@@ -64,14 +87,14 @@ Vue.createApp({
         // Добавление
         ////////////////////////////////////////////////////////////////////////////////////////////
         btnAddOnClick() {
-            this.rows.push({'disk_id':'111', 'artist_name':'hbenbetbe', 'disk_name':'rnrtn', 'disk_note':'thrthrth'});
-            console.log(this.rows);
+            this.crud.rows.push({'disk_id':'111', 'artist_name':'hbenbetbe', 'disk_name':'rnrtn', 'disk_note':'thrthrth'});
+            console.log(this.crud.rows);
         },
         ////////////////////////////////////////////////////////////////////////////////////////////
         // Правка
         ////////////////////////////////////////////////////////////////////////////////////////////
         btnEditOnClick() {
-            console.log(this.paginator);
+            console.log(this.crud.paginator);
         },
         ////////////////////////////////////////////////////////////////////////////////////////////
         // Удаление

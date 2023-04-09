@@ -47,20 +47,20 @@
 				</div>
 				<div class="col-auto mt-1 ms-auto ps-0">
 					<div class="input-group">
-						<input type="text" class="form-control" v-model="search" autocomplete="off">
+						<input type="text" class="form-control" v-model="crud.search" autocomplete="off">
 						<button type="button" class="btn btn-secondary" v-on:click="rowsLoad()">
 							<i class="fas fa-search fa-lg"></i>
 						</button>
 					</div>
 				</div>
 				<div class="col-auto mt-1 ms-auto ps-0">
-					<button type="button" class="btn btn-success me-2" title="Добавить запись" v-on:click="btnAddOnClick()" disabled>
+					<button type="button" class="btn btn-success me-2" title="Добавить запись" v-on:click="btnAddOnClick()">
 						<i class="fas fa-plus-circle fa-lg"></i> Добавить
 					</button>
-					<button type="button" class="btn btn-primary me-2" title="Правка записи" v-on:click="btnEditOnClick()" disabled>
+					<button type="button" class="btn btn-primary me-2" title="Правка записи" v-on:click="btnEditOnClick()">
 						<i class="fas fa-edit fa-lg"></i> Правка
 					</button>
-					<button type="button" class="btn btn-danger" title="Удаление записи" v-on:click="btnDelOnClick()" disabled>
+					<button type="button" class="btn btn-danger" title="Удаление записи" v-on:click="btnDelOnClick()">
 						<i class="fas fa-trash-alt fa-lg"></i> Удаление
 					</button>
 				</div>
@@ -83,9 +83,13 @@
 				</table>
 			</div>
 			<div class="table-crud-tbody" onscroll="crudSynchroScroll(event)">
-				<table class="table-crud table table-bordered table-hover">
+				<table class="table-crud table table-bordered">
 					<tbody>
-						<tr v-for="row in rows">
+						<tr
+							v-for="row in crud.rows"
+							v-bind:style="{'background-color': rowSelectedStyle('crud', row, 'disk_id') ? 'LightYellow' : ''}"
+							v-on:click="rowSelectedClick('crud', row, 'disk_id')"
+						>
 							<td class="col-id text-center" v-text="row.disk_id"></td>
 							<td class="col-artist" v-text="row.artist_name"></td>
 							<td class="col-disk" v-text="row.disk_name"></td>
@@ -102,7 +106,7 @@
 			<div class="row justify-content-end mb-2">
 				<div class="col-auto mt-2">
 					<label class="col-form-label">Всего:</label>
-					<label class="col-form-label border rounded bg-light px-2 ms-2">@{{paginator.total}}</label>
+					<label class="col-form-label border rounded bg-light px-2 ms-2">@{{crud.paginator.total}}</label>
 				</div>
 				<div class="col-auto mt-2">
 					<div class="input-group">
@@ -112,11 +116,11 @@
 						<button type="button" class="btn btn-secondary border-0 border-start paginator-btn" v-on:click="paginate('prev')">
 							<i class="fa-solid fa-caret-left fa-2xl"></i>
 						</button>
-						<select class="form-select text-center paginator-select" v-model="paginator.page" v-on:change="paginate()">
-							<option v-for="page in paginator.pages" v-bind:value="page">@{{page}}</option>
+						<select class="form-select text-center paginator-select" v-model="crud.paginator.page" v-on:change="paginate()">
+							<option v-for="page in crud.paginator.pages" v-bind:value="page">@{{page}}</option>
 						</select>
 						<label class="input-group-text border-end-0 pe-2">из</label>
-						<label class="input-group-text border-start-0 ps-0">@{{paginator.last_page}}</label>
+						<label class="input-group-text border-start-0 ps-0">@{{crud.paginator.last_page}}</label>
 						<button type="button" class="btn btn-secondary border-0 border-end paginator-btn" v-on:click="paginate('next')">
 							<i class="fa-solid fa-caret-right fa-2xl"></i>
 						</button>
@@ -127,8 +131,8 @@
 				</div>
 				<div class="col-auto mt-2">
 					<label class="col-form-label">на странице:</label>
-					<select class="form-select d-inline text-center ms-2" style="width: 82px;" v-model="paginator.per_page" v-on:change="paginate('per_page')">
-						<option v-for="per_page in paginator.per_pages" v-bind:value="per_page">@{{per_page}}</option>
+					<select class="form-select d-inline text-center ms-2" style="width: 82px;" v-model="crud.paginator.per_page" v-on:change="paginate('per_page')">
+						<option v-for="per_page in crud.paginator.per_pages" v-bind:value="per_page">@{{per_page}}</option>
 					</select>
 				</div>
 			</div>
